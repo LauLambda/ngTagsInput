@@ -402,6 +402,10 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
                     ngModelCtrl.$setValidity('leftoverText', true);
                 })
                 .on('input-blur', function() {
+                    if(scope.text[scope.newTag.text().length -1] === ',') {
+                      scope.newTag.text(scope.newTag.text().split(',')[0]);
+                    }
+
                     if (options.addOnBlur && !options.addFromAutocompleteOnly) {
                         tagList.addText(scope.newTag.text());
                     }
@@ -412,6 +416,11 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
                     var key = event.keyCode,
                         addKeys = {},
                         shouldAdd, shouldRemove, shouldSelect, shouldEditLastTag;
+
+                    if(scope.text[scope.newTag.text().length -1] === ',') {
+                      key = KEYS.comma;
+                      scope.newTag.text(scope.newTag.text().split(',')[0]);
+                    }
 
                     if (tiUtil.isModifierOn(event) || hotkeys.indexOf(key) === -1) {
                         return;
