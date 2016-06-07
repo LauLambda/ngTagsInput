@@ -5,7 +5,7 @@
  * Copyright (c) 2013-2016 Michael Benford
  * License: MIT
  *
- * Generated at 2016-06-07 11:33:30 -0300
+ * Generated at 2016-06-07 12:10:34 -0300
  */
 (function() {
 'use strict';
@@ -431,7 +431,7 @@ tagsInput.directive('tagsInput', ["$timeout", "$document", "$window", "$q", "tag
                     ngModelCtrl.$setValidity('leftoverText', true);
                 })
                 .on('input-blur', function() {
-                    if(scope.text[scope.newTag.text().length -1] === ',') {
+                    if (scope.text[scope.newTag.text().length -1] === ',') {
                       scope.newTag.text(scope.newTag.text().split(',')[0]);
                     }
 
@@ -446,9 +446,9 @@ tagsInput.directive('tagsInput', ["$timeout", "$document", "$window", "$q", "tag
                         addKeys = {},
                         shouldAdd, shouldRemove, shouldSelect, shouldEditLastTag;
 
-                    if(scope.text[scope.newTag.text().length -1] === ',') {
-                      key = KEYS.comma;
-                      scope.newTag.text(scope.newTag.text().split(',')[0]);
+                    if ((event.keyCode === 229) && (scope.text[scope.newTag.text().length -1] === ',')) {
+                        key = KEYS.comma;
+                        scope.newTag.text(scope.newTag.text().split(',')[0]);
                     }
 
                     if (tiUtil.isModifierOn(event) || hotkeys.indexOf(key) === -1) {
